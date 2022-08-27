@@ -1,0 +1,71 @@
+{% extends 'usernavigation.html' %}
+{% load static %}
+{% block body %}
+
+<div class="container mt-5">
+    <h2 class="text-center">UPLOAD NOTES</h2>
+    <HR>
+<div class="row">
+    
+    <div class="col-sm-6">
+        
+    <form method="post" enctype="multipart/form-data">
+        
+        <form method="POST">
+            {% csrf_token %}
+        <label>Branch</label>
+             <select class="form-control"  name="branch">
+                <option value="">---Select Branch---</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Information Technology">Information TEchnology</option>
+                <option value="Civil">Civil</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Electrical">Electrical</option>
+
+             </select>
+        <label>Subject</label>   
+              <input type="text" class="form-control" placeholder="Enter Subject Name" name="subject">
+              <label>Notes File</label>   
+              <input type="file" class="form-control"  name="notesfile">
+              <label>File Type</label>   
+              <select class="form-control"  name="filetype">
+                <option value="">---Select File Type---</option>
+                <option value="pdf">PDF</option>
+                <option value="PPT">PPT</option>
+                <option value="DOC">DOC/DOCX</option>
+                <option value="TXT">TXT</option>
+                <option value="IMG">Image</option>
+                <option value="ZIP">ZIP/RAR</option>
+
+             </select>
+              
+              <label>Description</label>   
+              <textarea class="form-control" name="description">
+               
+              </textarea>
+              <input type="submit" class="btn btn-danger mt-2" value="submit">
+        </form>
+    </div>
+
+    <div class="col-sm-6">
+        
+        <img src="{% static 'images/notes1.jpg' %}" style= "width: 90%; height: 400px" class="mt-2">
+    </div>
+</div>
+
+</div>
+
+{% if error == "no" %}
+<script>
+    alert('Notes Uploaded Successfully');
+    
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert('Something went wrong , Try Again');
+</script>
+{% endif %}
+
+{% endblock %}
